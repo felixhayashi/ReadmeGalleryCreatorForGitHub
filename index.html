@@ -13,28 +13,39 @@
         var spacor = document.getElementById("spacor");
         var output = document.getElementById("output");
         
+        
         var render = function(ev) {
+          
           var text = "";
-          var imagesPerRow = 97 / parseInt(adjustor.value);
-          while(url = re.exec(input.value)) {
+          // we do not base the calculation on 100% with to ensure
+          // images fit despite borders, paddings or added spaces
+          // that reduce the available width…
+          var imagesPerRow = Math.round(97 / parseInt(adjustor.value));
+          var re = /\[[^\]]+\]\(([^)]+)\)/g;
+          while(url = re.exec(input.value)) { // assignement, not comparison!
             text +=   '<img'
                     + ' src="' + url[1] + '"'
                     + ' width="' + imagesPerRow + '%">'
                     + '</img>'
-                    + (spacor.checked ? " " : "");
+                    + (spacor.checked ? "\n" : "");
           }
+          
+          // update the preview
           preview.innerHTML = text;
           adjustorDisplay.innerHTML = adjustor.value;
           
+          // update the code for the readme
           output.innerHTML = "";
           output.appendChild(document.createTextNode(text)); 
+          
         };
         
-        var re = /\[[^\]]+\]\(([^)]+)\)/g;
+        
         input.addEventListener('keyup', render, false);
         adjustor.addEventListener('input', render, false);
         spacor.addEventListener('change', render, false);
         
+        // call render once at startup
         render();
 
       };
@@ -54,7 +65,7 @@
         position: fixed;
         text-align: left;
         border-top: 1px solid gray;
-        background-color: #74AD78;
+        background-color: #7D7D7D;
         color: white;
         bottom: 0px;
         left: 0;
@@ -64,17 +75,27 @@
       footer span {
         vertical-align: super;
       }
+      footer a {
+        color: white;
+      }
       body > .page {
-        overflow: auto;
+        padding: 5px;
       }
       .page {
         max-width: 790px;
         margin: auto;
-        padding: 5px;
+      }
+      header {
+        text-align: center;
+        background: white;
       }
       #intro {
-        font-style: italic;
         text-align: center;
+        background-color: #645555;
+        padding: 20px;
+        color: white;
+        margin: 0;
+        font-size: 1.1em;
       }
       #adjustor {
         width: 90%;
@@ -82,6 +103,10 @@
       .step:not(.full-stretch) {
         float: left;
         width: 50%;
+      }
+      h3 span {
+        font-size: 1.5em;
+        color: #937373;
       }
       .full-stretch {
         clear: both;
@@ -102,7 +127,6 @@
         vertical-align: super; 
       }
       #readme {
-        position: relative;
         margin: 30px 0;
         width: 100%;
       }
@@ -119,6 +143,9 @@
       #readme h1 {
         margin-top: 0;
         text-align: left;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 16px;
+        padding-bottom: 0.3em;
       }
       #readme article {
         background-color: #fff;
@@ -136,31 +163,28 @@
         font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
       }
       h1 {
-        padding-bottom: 0.3em;
         font-size: 2.25em;
         line-height: 1.2;
-        border-bottom: 1px solid #eee;
-        margin-bottom: 16px;
         font-weight: bold;
         line-height: 40px;
-        text-align: center;
       }
       h2 {
         color: red
       }
       textarea {
         width: 100%;
-        height: 5em;
+        height: 4em;
       }
     </style>
   </head>
   <body>
-    <h1>README.md Gallery Creator for GitHub</h1>
-    <p id="intro">Always wanted to prove 'em that you are one of the <u>cool guys</u> at GitHub? Then don't miss the chance! Add a gallery to your project's README.md today and <u>be a winner.</u></p>
-    <hr />
+    <header>
+      <h1>README.md Gallery Creator for GitHub</h1>
+      <p id="intro">Always wanted to prove 'em that you are one of the <u>cool guys</u> at GitHub? Then don't miss the chance! Add a gallery to your project's README.md today. Be a winner.</p>
+    </header>
     <div class="page">
       <div class="step">
-        <h3>① Create markdown links at GitHub</h3>
+        <h3><span>①</span> Create markdown links at GitHub</h3>
         <ol>
           <li>Go to your GitHub repository</li>
           <li>Click "New Issue"</li>
@@ -169,7 +193,8 @@
         </ol>
       </div>
       <div class="step">
-        <h3>② Paste the code into the textarea below</h3>
+        <h3><span>②</span> Paste the code into the textarea below</h3>
+        <i>Remove the demo code below and add your code…</i>
         <textarea id="input">
 ![2015-09-20 17 02 28](https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png)
 ![2015-09-20 17 16 58](https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png)
@@ -178,7 +203,7 @@
         </textarea>
       </div>
       <div class="step full-stretch">
-        <h3>③ Adjust your gallery like a boss.</h3>  
+        <h3><span>③</span> Adjust your gallery like a boss.</h3>  
         <table>
           <tr>
             <th>Images / Row</th>
@@ -191,7 +216,7 @@
             </td>
             <td>
               <label>
-                <input id="spacor" type="checkbox" name="spacor" value="1">Add space between images
+                <input id="spacor" type="checkbox" name="spacor" value="1" checked>Add space between images
               </label>
             </td>
           </tr>
@@ -206,16 +231,16 @@
         </div>
       </div>
       <div class="step full-stretch">      
-        <h3>④  Now grab your code and get outa here.</h3>
+        <h3><span>④</span>  Now grab your code and get outa here.</h3>
         Select the code below and paste it into your project's readme.md and you are good!
         <pre><code id="output"></code></pre>
       </div>
     </div>
     <footer>
       <div class="page">
-        <iframe src="https://ghbtns.com/github-btn.html?user=felixhayashi&repo=ReadmeGalleryCreatorForGitHub&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+        <iframe src="https://ghbtns.com/github-btn.html?user=felixhayashi&repo=ReadmeGalleryCreatorForGitHub&type=star&count=true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>
         <span> 
-          This service is free of any charge. Enjoy :) – Created by <a href="https://github.com/felixhayashi">Me</a>
+          Created by <a href="https://github.com/felixhayashi">@felixhayashi</a>. Free of any charge. Enjoy :)
         </span>
       </div>
     </footer>
