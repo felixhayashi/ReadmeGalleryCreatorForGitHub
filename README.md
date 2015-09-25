@@ -2,7 +2,7 @@
 
 The readme gallery creator wizzard allows you to upgrade your `README.md` by quickly adding
 your favorite images to it in a gallery-style.
-Visit [http://felixhayashi.github.io/ReadmeGalleryCreatorForGitHub/](ReadmeGalleryCreatorForGitHub) to create
+Visit [ReadmeGalleryCreatorForGitHub](http://felixhayashi.github.io/ReadmeGalleryCreatorForGitHub/) to create
 galleries like the one you see below:
 
 <img src="https://cloud.githubusercontent.com/assets/4307137/10112023/785137f4-63d8-11e5-8e50-bd514ad0a31d.png" width="24.25%"></img>
@@ -21,4 +21,4 @@ Here is an example. Looks nice, right?
 <img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="16.166666666666668%"></img>
 <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="16.166666666666668%"></img>
 
-Now go ahead and create your gallery! Have fun!
+Go ahead and create your gallery! Have fun!
