@@ -1,40 +1,224 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Readmegallerycreatorforgithub by felixhayashi</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <meta charset=utf-8 />
+    <title>README.md Gallery Creator for GitHub</title>
+    <meta name="description" content="Add a gallery to your GitHub repository's markdown README.md file that contains screenshots and images of your project." />
+    <script>
+      window.onload = function() {
+        
+        var input = document.getElementById("input");
+        var adjustor = document.getElementById("adjustor");
+        var adjustorDisplay = document.getElementById("adjustor-display");
+        var spacor = document.getElementById("spacor");
+        var output = document.getElementById("output");
+        
+        var render = function(ev) {
+          var text = "";
+          var imagesPerRow = 97 / parseInt(adjustor.value);
+          while(url = re.exec(input.value)) {
+            text +=   '<img'
+                    + ' src="' + url[1] + '"'
+                    + ' width="' + imagesPerRow + '%">'
+                    + '</img>'
+                    + (spacor.checked ? " " : "");
+          }
+          preview.innerHTML = text;
+          adjustorDisplay.innerHTML = adjustor.value;
+          
+          output.innerHTML = "";
+          output.appendChild(document.createTextNode(text)); 
+        };
+        
+        var re = /\[[^\]]+\]\(([^)]+)\)/g;
+        input.addEventListener('keyup', render, false);
+        adjustor.addEventListener('input', render, false);
+        spacor.addEventListener('change', render, false);
+        
+        render();
+
+      };
+    </script>
+    <style type="text/css">
+      *, *:before, *:after {
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+        color: #333;
+        margin-bottom: 30px;
+      }
+      footer {
+        position: fixed;
+        text-align: left;
+        border-top: 1px solid gray;
+        background-color: #74AD78;
+        color: white;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        padding-top: 5px;
+      }
+      footer span {
+        vertical-align: super;
+      }
+      body > .page {
+        overflow: auto;
+      }
+      .page {
+        max-width: 790px;
+        margin: auto;
+        padding: 5px;
+      }
+      #intro {
+        font-style: italic;
+        text-align: center;
+      }
+      #adjustor {
+        width: 90%;
+      }
+      .step:not(.full-stretch) {
+        float: left;
+        width: 50%;
+      }
+      .full-stretch {
+        clear: both;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th {
+        background-color: #EBEBEB;
+      }
+      tr > * {
+        border: 1px solid #D8D8D8;
+        padding: 5px;
+      }
+      #adjustor-display {
+        display: inline-block;
+        vertical-align: super; 
+      }
+      #readme {
+        position: relative;
+        margin: 30px 0;
+        width: 100%;
+      }
+      #readme h3 {
+        background-color: #f5f5f5;
+        margin: 0;
+        border: 1px solid #d8d8d8;
+        border-bottom: 0;
+        padding: 9px 10px 10px;
+        font-size: 14px;
+        line-height: 17px;
+        display: block;
+      }
+      #readme h1 {
+        margin-top: 0;
+        text-align: left;
+      }
+      #readme article {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 30px;
+        word-wrap: break-word;
+      }
+      pre {
+        padding: 5px;
+        background-color: #eee;
+        white-space: pre-wrap;
+        min-height: 150px;
+      }
+      code {
+        font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
+      }
+      h1 {
+        padding-bottom: 0.3em;
+        font-size: 2.25em;
+        line-height: 1.2;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 16px;
+        font-weight: bold;
+        line-height: 40px;
+        text-align: center;
+      }
+      h2 {
+        color: red
+      }
+      textarea {
+        width: 100%;
+        height: 5em;
+      }
+    </style>
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Readmegallerycreatorforgithub</h1>
-      <h2 class="project-tagline">README.md Gallery Creator for GitHub</h2>
-      <a href="https://github.com/felixhayashi/ReadmeGalleryCreatorForGitHub" class="btn">View on GitHub</a>
-      <a href="https://github.com/felixhayashi/ReadmeGalleryCreatorForGitHub/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/felixhayashi/ReadmeGalleryCreatorForGitHub/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
-
-    <section class="main-content">
-      <p>&lt;!DOCTYPE html&gt;
-
-  </p>
+    <h1>README.md Gallery Creator for GitHub</h1>
+    <p id="intro">Always wanted to prove 'em that you are one of the <u>cool guys</u> at GitHub? Then don't miss the chance! Add a gallery to your project's README.md today and <u>be a winner.</u></p>
+    <hr />
+    <div class="page">
+      <div class="step">
+        <h3>① Create markdown links at GitHub</h3>
+        <ol>
+          <li>Go to your GitHub repository</li>
+          <li>Click "New Issue"</li>
+          <li>Drag'n'drop your images into the issue's textarea</li>
+          <li>Copy the markdown code from the issue's textarea</li>
+        </ol>
+      </div>
+      <div class="step">
+        <h3>② Paste the code into the textarea below</h3>
+        <textarea id="input">
+![2015-09-20 17 02 28](https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png)
+![2015-09-20 17 16 58](https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png)
+![2015-09-20 17 07 53](https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png)
+![2015-09-20 17 08 37](https://cloud.githubusercontent.com/assets/4307137/10105288/28698fae-63ae-11e5-8ba7-a62360a8e8a7.png)
+        </textarea>
+      </div>
+      <div class="step full-stretch">
+        <h3>③ Adjust your gallery like a boss.</h3>  
+        <table>
+          <tr>
+            <th>Images / Row</th>
+            <th>Spacing</th>
+          </tr>
+          <tr>
+            <td>
+              <input id="adjustor" type="range" min="1" max="20" step="1" value="4" />
+              <span id="adjustor-display"></span>
+            </td>
+            <td>
+              <label>
+                <input id="spacor" type="checkbox" name="spacor" value="1">Add space between images
+              </label>
+            </td>
+          </tr>
+        </table>
+        <div id="readme">
+          <h3>README.mkdn</h3>
+          <article>
+            <h1>Your Project</h1>
+            <p id="preview"></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Itaque ad tempus ad Pisonem omnes. Quonam, inquit, modo? Quis negat? Summae mihi videtur inscitiae. Hoc mihi cum tuo fratre convenit.</p>
+          </article>
+        </div>
+      </div>
+      <div class="step full-stretch">      
+        <h3>④  Now grab your code and get outa here.</h3>
+        Select the code below and paste it into your project's readme.md and you are good!
+        <pre><code id="output"></code></pre>
+      </div>
+    </div>
+    <footer>
+      <div class="page">
+        <iframe src="https://ghbtns.com/github-btn.html?user=felixhayashi&repo=ReadmeGalleryCreatorForGitHub&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+        <span> 
+          This service is free of any charge. Enjoy :) – Created by <a href="https://github.com/felixhayashi">Me</a>
+        </span>
+      </div>
+    </footer>
     
-    README.md Gallery Creator for GitHub
-    
-    
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/felixhayashi/ReadmeGalleryCreatorForGitHub">Readmegallerycreatorforgithub</a> is maintained by <a href="https://github.com/felixhayashi">felixhayashi</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
   </body>
 </html>
