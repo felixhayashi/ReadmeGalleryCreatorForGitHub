@@ -20,14 +20,14 @@
           // we do not base the calculation on 100% with to ensure
           // images fit despite borders, paddings or added spaces
           // that reduce the available width…
-          var imagesPerRow = Math.round(97 / parseInt(adjustor.value));
+          var imagesPerRow = Math.round(90 / parseInt(adjustor.value));
           var re = /\[[^\]]+\]\(([^)]+)\)/g;
           while(url = re.exec(input.value)) { // assignement, not comparison!
             text +=   '<img'
                     + ' src="' + url[1] + '"'
                     + ' width="' + imagesPerRow + '%">'
                     + '</img>'
-                    + (spacor.checked ? "\n" : "");
+                    + (spacor.checked ? " " : "");
           }
           
           // update the preview
@@ -35,15 +35,17 @@
           adjustorDisplay.innerHTML = adjustor.value;
           
           // update the code for the readme
-          output.innerHTML = "";
-          output.appendChild(document.createTextNode(text)); 
+          output.value = text; 
           
         };
-        
         
         input.addEventListener('keyup', render, false);
         adjustor.addEventListener('input', render, false);
         spacor.addEventListener('change', render, false);
+        output.addEventListener('click', function() {
+          this.focus();
+          this.select();
+        }, false);
         
         // call render once at startup
         render();
@@ -100,6 +102,9 @@
       #adjustor {
         width: 90%;
       }
+      #output {
+        height: 200px;
+      }
       .step:not(.full-stretch) {
         float: left;
         width: 50%;
@@ -153,15 +158,6 @@
         padding: 30px;
         word-wrap: break-word;
       }
-      pre {
-        padding: 5px;
-        background-color: #eee;
-        white-space: pre-wrap;
-        min-height: 150px;
-      }
-      code {
-        font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
-      }
       h1 {
         font-size: 2.25em;
         line-height: 1.2;
@@ -200,6 +196,8 @@
 ![2015-09-20 17 16 58](https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png)
 ![2015-09-20 17 07 53](https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png)
 ![2015-09-20 17 08 37](https://cloud.githubusercontent.com/assets/4307137/10105288/28698fae-63ae-11e5-8ba7-a62360a8e8a7.png)
+![2015-09-20 17 02 28](https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png)
+![2015-09-20 17 16 58](https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png)
         </textarea>
       </div>
       <div class="step full-stretch">
@@ -211,7 +209,7 @@
           </tr>
           <tr>
             <td>
-              <input id="adjustor" type="range" min="1" max="20" step="1" value="4" />
+              <input id="adjustor" type="range" min="1" max="20" step="1" value="6" />
               <span id="adjustor-display"></span>
             </td>
             <td>
@@ -231,9 +229,10 @@
         </div>
       </div>
       <div class="step full-stretch">      
-        <h3><span>④</span>  Now grab your code and get outa here.</h3>
-        Select the code below and paste it into your project's readme.md and you are good!
-        <pre><code id="output"></code></pre>
+        <h3><span>④</span>  Now grab yer code and get outta here.</h3>
+        Click into the textarea below to select the code. Then copy'n'paste it into your project's readme.md and you are good!
+        By the way, you can also paste it into issues, that will work too!
+        <textarea id="output"></output>
       </div>
     </div>
     <footer>
