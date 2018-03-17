@@ -14,10 +14,10 @@ galleries like the one you see below:
 
 Here is an example. Looks nice, right?
 
-<img src="https://cloud.githubusercontent.com/assets/4307137/9981521/384afc1a-5fc0-11e5-92bc-2c2ce5996766.png" width="16.166666666666668%" />
-<img src="https://cloud.githubusercontent.com/assets/4307137/9981522/3863033c-5fc0-11e5-9c2d-f27762f51f8b.png" width="16.166666666666668%" />
-<img src="https://cloud.githubusercontent.com/assets/4307137/9981524/386d61b0-5fc0-11e5-9485-94f75be5e049.png" width="16.166666666666668%" />
-<img src="https://cloud.githubusercontent.com/assets/4307137/9981523/386d00a8-5fc0-11e5-9006-11ed7abce725.png" width="16.166666666666668%" />
+<img src="https://cloud.githubusercontent.com/assets/4307137/9981521/384afc1a-5fc0-11e5-92bc-2c2ce5996766.png" width="16.166666666666668%"></img>
+<img src="https://cloud.githubusercontent.com/assets/4307137/9981522/3863033c-5fc0-11e5-9c2d-f27762f51f8b.png" width="16.166666666666668%"></img>
+<img src="https://cloud.githubusercontent.com/assets/4307137/9981524/386d61b0-5fc0-11e5-9485-94f75be5e049.png" width="16.166666666666668%"></img>
+<img src="https://cloud.githubusercontent.com/assets/4307137/9981523/386d00a8-5fc0-11e5-9006-11ed7abce725.png" width="16.166666666666668%"></img>
 <img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="16.166666666666668%"></img>
 <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="16.166666666666668%"></img>
 
